@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Wraps an array (meta data for now) and tells if there was any changes.
  *
@@ -37,7 +40,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 *
 	 * @param array $meta Data to wrap behind this function.
 	 */
-	public function __construct( $meta = array() ) {
+	public function __construct( array $meta = array() ) {
 		$this->current_data = $meta;
 		$this->apply_changes();
 	}
@@ -65,7 +68,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 * @param string $key Key to set.
 	 * @param mixed  $value Value to set.
 	 */
-	public function __set( $key, $value ) {
+	public function __set( string $key, mixed $value ): void {
 		$this->current_data[ $key ] = $value;
 	}
 
@@ -77,7 +80,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 *
 	 * @return bool
 	 */
-	public function __isset( $key ) {
+	public function __isset( string $key ): bool {
 		return array_key_exists( $key, $this->current_data );
 	}
 
@@ -87,7 +90,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 * @param string $key Key to get.
 	 * @return mixed Property value or NULL if it does not exists
 	 */
-	public function __get( $key ) {
+	public function __get( string $key ): mixed {
 		if ( array_key_exists( $key, $this->current_data ) ) {
 			return $this->current_data[ $key ];
 		}
@@ -99,7 +102,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 *
 	 * @return array
 	 */
-	public function get_changes() {
+	public function get_changes(): array {
 		$changes = array();
 		foreach ( $this->current_data as $id => $value ) {
 			if ( ! array_key_exists( $id, $this->data ) || $value !== $this->data[ $id ] ) {
@@ -114,7 +117,7 @@ class WC_Meta_Data implements JsonSerializable {
 	 *
 	 * @return array
 	 */
-	public function get_data() {
+	public function get_data(): array {
 		return $this->data;
 	}
 }
