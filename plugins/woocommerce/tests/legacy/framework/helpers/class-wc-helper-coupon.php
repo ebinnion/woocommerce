@@ -128,7 +128,7 @@ class WC_Helper_Coupon {
 	 *
 	 * @return float
 	 */
-	public static function filter_get_discount_amount( $discount, $discounting_amount, $item, $single, $coupon ) {
+	public static function filter_get_discount_amount( float $discount, float $discounting_amount, $item, bool $single, WC_Coupon $coupon ): float {
 		if ( ! isset( self::$custom_types [ $coupon->get_discount_type() ] ) ) {
 			return $discount;
 		}
