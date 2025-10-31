@@ -637,6 +637,7 @@ final class WooCommerce {
 		include_once WC_ABSPATH . 'includes/interfaces/class-wc-webhooks-data-store-interface.php';
 		include_once WC_ABSPATH . 'includes/interfaces/class-wc-queue-interface.php';
 
+
 		/**
 		 * Core traits.
 		 */
