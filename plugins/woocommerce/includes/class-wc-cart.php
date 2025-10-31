@@ -41,7 +41,7 @@ class WC_Cart extends WC_Legacy_Cart {
 	 *
 	 * @var array
 	 */
-	public $cart_contents = array();
+	private $cart_contents = array();
 
 	/**
 	 * Contains an array of removed cart items so we can restore them if needed.
@@ -1340,7 +1340,7 @@ class WC_Cart extends WC_Legacy_Cart {
 
 			$this->cart_contents = apply_filters( 'woocommerce_cart_contents_changed', $this->cart_contents );
 
-			do_action( 'woocommerce_add_to_cart', $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data );
+			do_action( 'woocommerce_cart_item_added', $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data );
 
 			return $cart_item_key;
 
@@ -1473,7 +1473,7 @@ class WC_Cart extends WC_Legacy_Cart {
 	 * @return bool
 	 */
 	public function needs_payment() {
-		return apply_filters( 'woocommerce_cart_needs_payment', 0 < $this->get_total( 'edit' ), $this );
+		return 0 < $this->get_total( 'edit' );
 	}
 
 	/*
@@ -1854,7 +1854,7 @@ class WC_Cart extends WC_Legacy_Cart {
 		}
 
 		// Sanitize coupon code.
-		$coupon_code = wc_format_coupon_code( $coupon_code );
+		$coupon_code = wc_format_coupon_code( $coupon_code['code'] );
 
 		// Get the coupon.
 		$the_coupon = new WC_Coupon( $coupon_code );

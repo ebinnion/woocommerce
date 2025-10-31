@@ -213,7 +213,7 @@ class WC_Frontend_Scripts {
 				'deps'    => array( 'jquery', 'woocommerce' ),
 				'version' => $version,
 			),
-			'wc-add-to-cart'             => array(
+			'wc-product-add-to-cart'     => array(
 				'src'     => self::get_asset_url( 'assets/js/frontend/add-to-cart' . $suffix . '.js' ),
 				'deps'    => array( 'jquery', 'wc-jquery-blockui' ),
 				'version' => $version,
@@ -455,7 +455,7 @@ class WC_Frontend_Scripts {
 		self::register_styles();
 
 		if ( 'yes' === get_option( 'woocommerce_enable_ajax_add_to_cart' ) ) {
-			self::enqueue_script( 'wc-add-to-cart' );
+			self::enqueue_script( 'wc-product-add-to-cart' );
 		}
 		if ( is_cart() ) {
 			self::enqueue_script( 'wc-cart' );
@@ -706,7 +706,7 @@ class WC_Frontend_Scripts {
 					'request_timeout' => 5000,
 				);
 				break;
-			case 'wc-add-to-cart':
+			case 'wc-product-add-to-cart':
 				$params = array(
 					'ajax_url'                => WC()->ajax_url(),
 					'wc_ajax_url'             => WC_AJAX::get_endpoint( '%%endpoint%%' ),

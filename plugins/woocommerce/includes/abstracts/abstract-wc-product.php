@@ -287,7 +287,11 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return string price
 	 */
 	public function get_price( $context = 'view' ) {
-		return $this->get_prop( 'price', $context );
+		$price = $this->get_prop( 'price', $context );
+		return array(
+			'amount'   => $price,
+			'currency' => get_woocommerce_currency(),
+		);
 	}
 
 	/**

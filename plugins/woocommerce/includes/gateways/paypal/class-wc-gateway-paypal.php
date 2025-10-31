@@ -698,7 +698,7 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 	 *
 	 * @param  int $order_id Order ID.
 	 */
-	public function capture_payment( $order_id ) {
+	public function capture_payment( $order_id, $payment_method ) {
 		$order = wc_get_order( $order_id );
 
 		// Bail if the order is not a PayPal order.

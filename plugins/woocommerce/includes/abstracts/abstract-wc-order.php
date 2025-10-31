@@ -498,7 +498,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	 * @param  bool $ex_tax Show discount excl any tax.
 	 * @return float
 	 */
-	public function get_total_discount( $ex_tax = true ) {
+	public function get_total_discount( $ex_tax = false ) {
 		if ( $ex_tax ) {
 			$total_discount = (float) $this->get_discount_total();
 		} else {
